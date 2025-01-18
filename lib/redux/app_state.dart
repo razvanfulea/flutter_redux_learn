@@ -2,18 +2,18 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter_redux_learn/redux/product/product_state.dart';
 import 'package:flutter_redux_learn/redux/products/products_state.dart';
 
-class AppState extends Equatable {
+class ProductsAppState extends Equatable {
   final ProductsState productsState;
   final ProductState productState;
 
 //<editor-fold desc="Data Methods">
-  const AppState({
+  const ProductsAppState({
     required this.productState,
     required this.productsState,
   });
 
-  factory AppState.initial() {
-    return AppState(
+  factory ProductsAppState.initial() {
+    return ProductsAppState(
       productsState: ProductsState.initial(),
       productState: ProductState.initial(),
     );
@@ -22,7 +22,7 @@ class AppState extends Equatable {
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
-      (other is AppState &&
+      (other is ProductsAppState &&
           runtimeType == other.runtimeType &&
           productsState == other.productsState &&
           productState == other.productState);
@@ -33,11 +33,11 @@ class AppState extends Equatable {
   @override
   String toString() => 'AppState{productsState: $productsState, productState: $productState}';
 
-  AppState copyWith({
+  ProductsAppState copyWith({
     ProductsState? productsState,
     ProductState? productState,
   }) {
-    return AppState(
+    return ProductsAppState(
       productsState: productsState ?? this.productsState,
       productState: productState ?? this.productState,
     );
@@ -50,8 +50,8 @@ class AppState extends Equatable {
     };
   }
 
-  factory AppState.fromMap(Map<String, dynamic> map) {
-    return AppState(
+  factory ProductsAppState.fromMap(Map<String, dynamic> map) {
+    return ProductsAppState(
       productsState: map['productsState'] as ProductsState,
       productState: map['productState'] as ProductState,
     );

@@ -5,7 +5,7 @@ import 'package:redux/redux.dart';
 
 import '../../models/product.dart';
 
-void productMiddleware(Store<AppState> store, action, NextDispatcher next) {
+void productMiddleware(Store<ProductsAppState> store, action, NextDispatcher next) {
   if (action is GetProductAction) {
     ProductRepository.instance.getProduct(action.id).then((Product product) {
       store.dispatch(GetProductSuccessAction(product: product));

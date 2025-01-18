@@ -15,9 +15,9 @@ class ProductPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Products')),
-      body: StoreConnector<AppState, _ViewModel>(
+      body: StoreConnector<ProductsAppState, _ViewModel>(
         distinct: true,
-        onInit: (Store<AppState> store) {
+        onInit: (Store<ProductsAppState> store) {
           store.dispatch(GetProductAction(id: productId));
         },
         onWillChange: (_ViewModel? prev, _ViewModel current) {
@@ -89,7 +89,7 @@ class _ViewModel extends Equatable {
     required this.error,
   });
 
-  static _ViewModel fromStore(Store<AppState> store) {
+  static _ViewModel fromStore(Store<ProductsAppState> store) {
     return _ViewModel(
       product: store.state.productState.product,
       status: store.state.productState.productStatus,

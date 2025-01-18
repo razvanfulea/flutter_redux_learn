@@ -17,9 +17,9 @@ class ProductsPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(title: const Text('Products')),
-        body: StoreConnector<AppState, _ViewModel>(
+        body: StoreConnector<ProductsAppState, _ViewModel>(
           distinct: true,
-          onInit: (Store<AppState> store) {
+          onInit: (Store<ProductsAppState> store) {
             store.dispatch(GetProductsAction());
           },
           onWillChange: (_ViewModel? prev, _ViewModel current) {
@@ -35,7 +35,7 @@ class ProductsPage extends StatelessWidget {
               );
             }
           },
-          converter: (Store<AppState> store) => _ViewModel.fromStore(store),
+          converter: (Store<ProductsAppState> store) => _ViewModel.fromStore(store),
           builder: (BuildContext context, _ViewModel vm) {
             if (vm.productsStatus == ProductsStatus.initial) {
               return Container();
@@ -93,7 +93,7 @@ class _ViewModel extends Equatable {
 
   const _ViewModel({required this.products, required this.productsStatus, required this.error});
 
-  static fromStore(Store<AppState> store) {
+  static fromStore(Store<ProductsAppState> store) {
     return _ViewModel(
       products: store.state.productsState.products,
       productsStatus: store.state.productsState.productsStatus,
